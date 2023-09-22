@@ -3,21 +3,21 @@ name: Re-deploy image to kubernetes
 on:
   repository_dispatch:
     types: [kubernetes_deployment]
-    inputs:
-      deployment_name: 
-        required: true
-        type: string
-      image_name:
-        required: true
-        type: string        
-      image_tag:
-        required: true
-        type: string        
-    secrets:
-      portal_username:
-        required: true
-      portal_password:
-        required: true
+    # inputs:
+    #   deployment_name: 
+    #     required: true
+    #     type: string
+    #   image_name:
+    #     required: true
+    #     type: string        
+    #   image_tag:
+    #     required: true
+    #     type: string        
+    # secrets:
+    #   portal_username:
+    #     required: true
+    #   portal_password:
+    #     required: true
 
 jobs:
   test-job:

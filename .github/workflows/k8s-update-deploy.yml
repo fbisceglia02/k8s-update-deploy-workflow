@@ -1,7 +1,7 @@
 name: Re-deploy image to kubernetes
 
 on:
-  repository_dispatch:
+  workflow_dispatch:
 
     # inputs:
     #   deployment_name: 

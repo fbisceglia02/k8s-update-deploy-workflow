@@ -2,7 +2,7 @@ name: Re-deploy image to kubernetes
 
 on:
   repository_dispatch:
-    types: [kubernetes_deployment]
+
     # inputs:
     #   deployment_name: 
     #     required: true

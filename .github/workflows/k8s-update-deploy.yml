@@ -20,6 +20,10 @@ jobs:
         run: |
           az aks get-credentials --resource-group AKS-Cluster-ssa_group --name AKS-Cluster-ssa
 
+      - name: Turn on the cluster
+        run: | 
+          az aks start -g AKS-Cluster-ssa_group -n AKS-Cluster-ssa
+
       - name: Get pods
         run: |
-          kubectl get pods
+          kubectl get pods 

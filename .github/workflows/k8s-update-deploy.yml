@@ -2,23 +2,7 @@ name: Re-deploy image to kubernetes
 
 on:
   workflow_dispatch:
-
-    # inputs:
-    #   deployment_name: 
-    #     required: true
-    #     type: string
-    #   image_name:
-    #     required: true
-    #     type: string        
-    #   image_tag:
-    #     required: true
-    #     type: string        
-    # secrets:
-    #   portal_username:
-    #     required: true
-    #   portal_password:
-    #     required: true
-
+  
 jobs:
   test-job:
     runs-on: ubuntu-latest

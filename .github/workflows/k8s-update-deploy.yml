@@ -15,3 +15,11 @@ jobs:
       - name: Login to Azure
         run: |
           az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRETS }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+
+      - name: Merge the cluster to the current config
+        run: |
+          az aks get-credentials --resource-group AKS-Cluster-ssa_group --name AKS-Cluster-ssa
+
+      - name: Get pods
+        run: |
+          kubectl get pods

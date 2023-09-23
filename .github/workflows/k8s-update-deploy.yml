@@ -39,6 +39,9 @@ jobs:
       - name: Update frontend deployment
         shell: bash
         run: |
+          cd kubernetes
+          cd dev
+          cd deployments
           echo "current location is "
           pwd
           echo "in the current location, we have these files"

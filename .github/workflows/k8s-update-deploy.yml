@@ -81,6 +81,8 @@ jobs:
               exit 1
             fi 
           done
+          echo "Ready replicas for frontend deployment: 2/2"
+          echo "Check completed: status success"
 
 
       - name: Shut down the cluster

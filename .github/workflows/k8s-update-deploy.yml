@@ -7,6 +7,11 @@ jobs:
   test-job:
     runs-on: ubuntu-latest
     steps:
+
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
       - name: Azure Login
         uses: Azure/login@v1
         with:

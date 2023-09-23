@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Install Azure CLI
         run: |
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
@@ -24,6 +27,18 @@ jobs:
         run: | 
           az aks start -g AKS-Cluster-ssa_group -n AKS-Cluster-ssa
 
-      - name: Get pods
+      - name: Get deployments
         run: |
-          kubectl get pods 
+          kubectl get deployments --no-headers
+
+      - name: Update frontend deployment
+        shell: bash
+        run: |
+          kubectl delete deployment frontend-website-mr --force
+          kubectl apply -f kubernetes\dev\deployments\frontend-website-mr-deploy.yaml
+          
+
+
+      - name: Shut down the cluster
+        run: | 
+          az aks stop -g AKS-Cluster-ssa_group -n AKS-Cluster-ssa

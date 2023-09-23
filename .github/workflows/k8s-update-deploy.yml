@@ -11,28 +11,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Azure CLI
-        if: false
+      - name: Install Azure CLI         
         run: |
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-      - name: Login to Azure
-        if: false
+      - name: Login to Azure         
         run: |
           az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRETS }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
-      - name: Merge the cluster to the current config
-        if: false
+      - name: Merge the cluster to the current config        
         run: |
           az aks get-credentials --resource-group AKS-Cluster-ssa_group --name AKS-Cluster-ssa
 
-      - name: Turn on the cluster
-        if: false
+      - name: Turn on the cluster        
         run: | 
           az aks start -g AKS-Cluster-ssa_group -n AKS-Cluster-ssa
 
-      - name: Get deployments
-        if: false
+      - name: Get deployments         
         run: |
           kubectl get deployments --no-headers
 
@@ -46,8 +41,6 @@ jobs:
           pwd
           echo "in the current location, we have these files"
           ls
-
-          exit 1
 
           DEPLOYMENT_NAME="frontend-website-mr"
 
@@ -63,7 +56,7 @@ jobs:
           fi
 
           # in ogni caso
-          kubectl apply -f kubernetes/dev/deployments/frontend-website-mr-deploy.yaml
+          kubectl apply -f frontend-website-mr-deploy.yaml
           
 
 

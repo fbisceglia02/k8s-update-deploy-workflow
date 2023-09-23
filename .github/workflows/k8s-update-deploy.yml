@@ -35,7 +35,7 @@ jobs:
         shell: bash
         run: |
           kubectl delete deployment frontend-website-mr --force
-          kubectl apply -f kubernetes\dev\deployments\frontend-website-mr-deploy.yaml
+          kubectl apply -f kubernetes/dev/deployments/frontend-website-mr-deploy.yaml
           
 
 

@@ -12,28 +12,40 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Azure CLI
+        if: false
         run: |
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
       - name: Login to Azure
+        if: false
         run: |
           az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRETS }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
       - name: Merge the cluster to the current config
+        if: false
         run: |
           az aks get-credentials --resource-group AKS-Cluster-ssa_group --name AKS-Cluster-ssa
 
       - name: Turn on the cluster
+        if: false
         run: | 
           az aks start -g AKS-Cluster-ssa_group -n AKS-Cluster-ssa
 
       - name: Get deployments
+        if: false
         run: |
           kubectl get deployments --no-headers
 
       - name: Update frontend deployment
         shell: bash
         run: |
+          echo "current location is "
+          pwd
+          echo "in the current location, we have these files"
+          ls
+
+          exit 1
+
           DEPLOYMENT_NAME="frontend-website-mr"
 
           # Try to get the deployment

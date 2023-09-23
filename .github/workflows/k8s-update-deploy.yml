@@ -58,6 +58,29 @@ jobs:
           # in ogni caso
           kubectl apply -f frontend-website-mr-deploy.yaml
           
+      - name: Check if deployment is up&running
+        shell: bash
+        run: |
+          sleep 5s
+          expected_replicas=$(kubectl get deploy frontend-website-mr -o jsonpath={.status.replicas})
+          if [ $expected_replicas -ne 2 ]; then
+            echo "number of expected replicas wrong"
+            exit 1 
+          fi
+          ready_replicas=$(kubectl get deploy frontend-website-mr -o jsonpath={.status.readyReplicas})
+
+          are_replicas_ready=$(( int_var1 == int_var2 ))
+
+          i=1
+          while (( i < 5 && are_replicas_ready == 0 )); do  
+            echo "error: some replicas containers failed to start, waiting 5s and retrying..."
+            sleep 5
+            (( i++ ))
+            if (( i == 5 )); then
+              echo "Error: too many attempts, containers are not coming up."
+              exit 1
+            fi 
+          done
 
 
       - name: Shut down the cluster

@@ -34,7 +34,20 @@ jobs:
       - name: Update frontend deployment
         shell: bash
         run: |
-          kubectl delete deployment frontend-website-mr --force
+          DEPLOYMENT_NAME="frontend-website-mr"
+
+          # Try to get the deployment
+          kubectl get deployment "$DEPLOYMENT_NAME" >/dev/null 2>&1
+
+          # Check the exit code of the kubectl command
+          if [ $? -eq 0 ]; then
+            echo "Deployment $DEPLOYMENT_NAME exists."
+            kubectl delete deployment $DEPLOYMENT_NAME --force
+          else
+            echo "The deployment \"$DEPLOYMENT_NAME\" has already been deleted."
+          fi
+
+          # in ogni caso
           kubectl apply -f kubernetes/dev/deployments/frontend-website-mr-deploy.yaml
           
 
